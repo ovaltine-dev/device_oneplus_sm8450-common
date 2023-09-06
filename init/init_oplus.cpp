@@ -34,45 +34,13 @@ void OverrideProperty(const char* name, const char* value) {
  */
 void vendor_load_properties() {
     auto device = GetProperty("ro.product.product.device", "");
-    auto rf_version = std::stoi(GetProperty("ro.boot.rf_version", "0"));
+    auto prjname = std::stoi(GetProperty("ro.boot.prjname", "0"));
 
-    switch (rf_version) {
-        case 11: // CN
-            if (device == "OnePlus9") {
-                OverrideProperty("ro.product.product.model", "LE2110");
-            } else if (device == "OnePlus9Pro") {
-                OverrideProperty("ro.product.product.model", "LE2120");
-            }
-            break;
-        case 12: // TMO
-            if (device == "OnePlus9") {
-                OverrideProperty("ro.product.product.model", "LE2117");
-            } else if (device == "OnePlus9Pro") {
-                OverrideProperty("ro.product.product.model", "LE2127");
-            }
-            break;
-        case 13: // IN
-            if (device == "OnePlus9") {
-                OverrideProperty("ro.product.product.model", "LE2111");
-            } else if (device == "OnePlus9Pro") {
-                OverrideProperty("ro.product.product.model", "LE2121");
-            }
-            break;
-        case 21: // EU
-            if (device == "OnePlus9") {
-                OverrideProperty("ro.product.product.model", "LE2113");
-            } else if (device == "OnePlus9Pro") {
-                OverrideProperty("ro.product.product.model", "LE2123");
-            }
-            break;
-        case 22: // NA
-            if (device == "OnePlus9") {
-                OverrideProperty("ro.product.product.model", "LE2115");
-            } else if (device == "OnePlus9Pro") {
-                OverrideProperty("ro.product.product.model", "LE2125");
-            }
+    switch (prjname) {
+        case 21842: // OvaltineEEA
+                OverrideProperty("ro.product.product.model", "CPH2415");
             break;
         default:
-            LOG(ERROR) << "Unexpected RF version: " << rf_version;
+            LOG(ERROR) << "Unexpected prjname: " << prjname;
     }
 }
